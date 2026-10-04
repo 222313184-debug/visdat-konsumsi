@@ -1,0 +1,17 @@
+---
+title: "Metode dan sumber data"
+---
+**Data utama (BPS).** Delapan tabel statistik "Rata-rata Konsumsi Perkapita Seminggu Menurut Kelompok … Per Kabupaten/kota (Satuan Komoditas)", tahun 2024, 514 kab/kota, 142 komoditas. Rincian judul, URL, dan tanggal akses ada di `data/SUMBER_DATA.csv`.
+
+**Data pendukung.** Tabel BPS *Jumlah Penduduk menurut Kabupaten/Kota dan Kelompok Umur 2024* untuk ukuran blok pada hierarki (`scripts/03_prepare_penduduk.py`; 26 kab/kota Papua yang tercatat ganda dihapus duplikatnya, 6 nama diselaraskan, total akhir sama dengan total nasional 281.603.799); batas wilayah kab/kota dari shapefile administrasi (periode 2019, 517 fitur; 3 badan air dibuang; 514 kab/kota dicocokkan dengan data BPS lewat nama dan tipe, 3 nama dikoreksi manual lewat `data/geo/alias_nama.csv`). Geometri disederhanakan (toleransi 0,008°) agar peta ringan.
+
+**Pra-pemrosesan** (`scripts/01_parse_konsumsi.py`, `scripts/02_prepare_geo.py`):
+
+- Sel bertanda "-" di tabel BPS dianggap 0 dan ditandai di kolom `strip` (8,7% dari seluruh sel).
+- Kab/kota digabung dengan provinsi dan pulau berdasarkan urutan baris sumber (diverifikasi dengan nama kab/kota pertama tiap provinsi).
+- 12 komoditas dipilih untuk analisis multivariat; kriteria dan alasan ada di `config.yaml`.
+- Karena satuan antarkomoditas berbeda, analisis memakai z-score.
+
+**Deklarasi alat bantu AI.** ISI (mis. kerangka kode dibuat dengan bantuan Claude; seluruh data, analisis, dan interpretasi diverifikasi penulis).
+
+**Keterbatasan.** Batas wilayah berperiode 2019, sedangkan data konsumsi 2024 (provinsi Papua versi 2022 diambil dari tabel BPS, bukan atribut shapefile); pulau-pulau kecil hilang akibat penyederhanaan geometri sehingga ada kab/kota kepulauan yang hampir tak terlihat di choropleth (simbol proporsional menutupi hal ini). Satuan komoditas tidak tercantum di berkas yang diunduh; nilai konsumsi tiap komoditas tidak dapat dijumlahkan. Tabel dipakai per komoditas, bukan sebagai asupan gizi.

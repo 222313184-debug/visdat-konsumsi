@@ -1,0 +1,22 @@
+---
+title: "Hierarki wilayah"
+subtitle: "Indonesia → pulau → provinsi → kab/kota"
+---
+
+::: {.callout-tip title="Cara membaca"}
+Klik sebuah blok untuk masuk ke level berikutnya (jejak posisi ada di atas treemap); klik jejak untuk kembali. **Ukuran blok = jumlah penduduk. Warna = z-score konsumsi** komoditas yang dipilih di menu (biru = di bawah rata-rata kab/kota, kuning = di atas).
+:::
+
+```{python}
+import sys; sys.path.insert(0, "src")
+import viz
+df = viz.muat()
+tm, sb = viz.hierarki(df)
+tm.show()
+```
+
+```{python}
+sb.show()
+```
+
+*Sumber: BPS, Susenas Maret 2024 (konsumsi); BPS (jumlah penduduk 2024). Warna pada pulau/provinsi adalah rata-rata z-score tertimbang penduduk.*

@@ -1,0 +1,21 @@
+---
+title: "Pola pangan: 12 komoditas, 514 kab/kota"
+---
+```{python}
+import sys; sys.path.insert(0, "src")
+import viz
+df = viz.muat()
+viz.tampil(viz.multivariat(df))
+```
+
+**Cara membaca.** Setiap titik adalah satu kab/kota. Dua sumbu PCA meringkas 12 komoditas yang sudah distandarkan (z-score) karena satuannya berbeda-beda. Seret kotak pada plot PCA: garis yang berwarna di parallel coordinates hanya kab/kota terpilih, dan heatmap menunjukkan profil rata-rata tiap klaster.
+
+**Muatan komponen (loading)**
+
+```{python}
+viz.loadings(df).sort_values("PC1")
+```
+
+**Interpretasi klaster dan pencilan:** ISI.
+
+*Sumber: BPS, Susenas Maret 2024. Klaster: k-means (k = `klaster_k` di config.yaml) pada z-score.*

@@ -1,0 +1,561 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap");
+
+/* Desain "Piring Indonesia" (diekstrak dari Figma Make). Warna halaman: sage/mustard/terracotta; warna grafik tetap Okabe-Ito. */
+:root {
+  --ink: #22352f;
+  --ink-soft: #43544d;
+  --paper: #f6f1e7;
+  --paper-deep: #ebe3d5;
+  --cream: #fffaf0;
+  --sage: #8a9b73;
+  --sage-pale: #dce2cc;
+  --mustard: #d5a33d;
+  --terracotta: #b96546;
+  --line: rgba(34, 53, 47, .15);
+  --shadow: 0 24px 70px rgba(62, 54, 40, .11);
+  --bs-body-font-family: "DM Sans", system-ui, sans-serif;
+  --serif: "Newsreader", Georgia, serif;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--bs-body-font-family);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  letter-spacing: -.04em;
+  line-height: 1.05;
+}
+
+a {
+  color: var(--terracotta);
+}
+
+#quarto-content {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+/* ---------- navbar ---------- */
+.navbar {
+  background: var(--paper) !important;
+  border-bottom: 1px solid var(--line);
+  min-height: 82px;
+}
+
+.navbar-title {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -.02em;
+  color: var(--ink) !important;
+}
+
+.navbar-title::before {
+  content: "";
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  margin-right: 11px;
+  vertical-align: middle;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 56%, var(--terracotta) 0 3px, transparent 3.5px),
+    radial-gradient(circle at 56% 32%, var(--mustard) 0 3px, transparent 3.5px),
+    radial-gradient(circle at 62% 66%, var(--sage) 0 3px, transparent 3.5px);
+}
+
+.navbar .nav-link {
+  position: relative;
+  font-size: 13px;
+  color: var(--ink-soft) !important;
+  padding: 10px 13px !important;
+}
+
+.navbar .nav-link:hover::after {
+  opacity: .55;
+  transform: scaleX(1);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--ink) !important;
+  font-weight: 500;
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  right: 13px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--terracotta);
+  opacity: 0;
+  transform: scaleX(.35);
+  transition: 180ms ease;
+}
+
+.navbar .nav-link.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.quarto-title-block .title {
+  font-size: clamp(30px, 4vw, 48px);
+}
+
+/* ---------- beranda ---------- */
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--terracotta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.eyebrow.dark {
+  color: var(--ink-soft);
+}
+
+.hero {
+  min-height: 600px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 88px;
+  padding: 96px 0 88px;
+}
+
+.hero-title {
+  max-width: 660px;
+  margin: 0 0 32px;
+  font-size: clamp(46px, 6.2vw, 86px);
+  line-height: .93;
+  letter-spacing: -.065em;
+}
+
+.hero-title em {
+  color: var(--terracotta);
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -.045em;
+}
+
+.hero-intro {
+  max-width: 555px;
+  margin-bottom: 42px;
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-actions>span {
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.primary-button {
+  display: inline-block;
+  padding: 14px 19px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--cream) !important;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary-button {
+  transition: transform .18s, box-shadow .18s, background .18s;
+}
+
+.primary-button:hover {
+  background: var(--terracotta);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(185, 101, 70, .35);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+.plate-visual {
+  position: relative;
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+}
+
+.plate-visual::before {
+  content: "";
+  position: absolute;
+  width: 395px;
+  height: 395px;
+  border: 1px dashed rgba(34, 53, 47, .18);
+  border-radius: 50%;
+  animation: turn 50s linear infinite;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.plate {
+  position: relative;
+  width: 340px;
+  height: 340px;
+  overflow: hidden;
+  border: 18px solid #fffaf3;
+  border-radius: 50%;
+  background: var(--sage-pale);
+  box-shadow: inset 0 0 0 1px var(--line), var(--shadow);
+  transform: rotate(-7deg);
+}
+
+.plate::before,
+.plate::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  background: var(--cream);
+}
+
+.plate::before {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+}
+
+.plate::after {
+  width: 100%;
+  height: 2px;
+  top: 53%;
+}
+
+.plate-center {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: 106px;
+  height: 106px;
+  display: grid;
+  place-content: center;
+  border: 7px solid var(--cream);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.plate-center strong {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 500;
+  line-height: .9;
+}
+
+.plate-center span {
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.food-shape {
+  position: absolute;
+  display: block;
+  width: 50%;
+  height: 50%;
+}
+
+.shape-rice {
+  left: 0;
+  top: 0;
+  background-color: #ecd9a2;
+  background-image: radial-gradient(ellipse at center, #fff8df 0 29%, transparent 31%);
+  background-size: 13px 8px;
+}
+
+.shape-leaf {
+  right: 0;
+  top: 0;
+  background: var(--sage);
+}
+
+.shape-protein {
+  right: 0;
+  bottom: 0;
+  background: var(--terracotta);
+}
+
+.shape-spice {
+  left: 0;
+  bottom: 0;
+  background: var(--mustard);
+}
+
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin-bottom: 90px;
+}
+
+.stat-strip>div {
+  min-height: 136px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 22px 16px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--cream);
+}
+
+.stat-strip span,
+.stat-strip small {
+  color: var(--ink-soft);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.stat-strip strong {
+  margin: 6px 0 3px;
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.finding-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin: 1.5rem 0 3.5rem;
+  padding: 34px;
+  border-radius: 5px;
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.finding-card h3 {
+  margin: 0 0 14px;
+  font-size: 29px;
+  color: var(--cream);
+}
+
+.finding-card p {
+  color: rgba(255, 250, 240, .68);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.finding-card a {
+  color: var(--mustard);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cluster-bars>div {
+  display: grid;
+  grid-template-columns: 70px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0;
+  font-size: 12px;
+  color: rgba(255, 250, 240, .78);
+}
+
+.cluster-bars i {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.cluster-bars b {
+  color: var(--cream);
+  font-weight: 500;
+  text-align: right;
+}
+
+.method-section {
+  margin: 2rem 0 3rem;
+  padding: 56px 56px 48px;
+  border-radius: 5px;
+  background: var(--paper-deep);
+}
+
+.method-section h2 {
+  margin: 0 0 40px;
+  font-size: clamp(30px, 3.6vw, 46px);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.step {
+  display: block;
+  padding-top: 20px;
+  border-top: 1px solid var(--ink);
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.step small {
+  color: var(--terracotta);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.step h3 {
+  margin: 22px 0 8px;
+  font-size: 20px;
+}
+
+.step p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.step {
+  transition: transform .18s, border-color .18s;
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  border-top-color: var(--terracotta);
+}
+
+.step:hover h3 {
+  color: var(--terracotta);
+}
+
+.finding-card a {
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+  transition: border-color .18s;
+}
+
+.finding-card a:hover {
+  border-bottom-color: var(--mustard);
+}
+
+main.content a:not(.primary-button):not(.step):hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.navbar a:hover {
+  text-decoration: none !important;
+}
+
+/* ---------- halaman grafik ---------- */
+.callout {
+  border-radius: 5px;
+}
+
+.js-plotly-plot,
+.cell-output-display iframe {
+  box-sizing: border-box;
+  max-width: 100%;
+  background: var(--cream) !important;
+  border-radius: 5px;
+  margin: .6rem 0 .3rem;
+  box-shadow: 0 0 0 1px var(--line), 0 16px 45px rgba(53, 47, 38, .06);
+}
+
+.cell-output-display iframe {
+  border: 0 !important;
+}
+
+.cell-output-display:has(.js-plotly-plot, iframe) {
+  overflow: visible !important;
+}
+
+/* Quarto memberi overflow:auto -> scrollbar jika selisih 1px */
+/* bingkai lewat box-shadow: border menambah lebar dan memicu scrollbar */
+table {
+  font-size: 14px;
+}
+
+em:has(> a),
+p>em:only-child {
+  color: var(--ink-soft);
+  font-size: .94rem;
+}
+
+.footer-note {
+  color: var(--ink);
+  font-size: .94rem;
+  margin-top: 2rem;
+}
+
+.nav-footer {
+  border-top: 1px solid var(--line) !important;
+  background: var(--paper) !important;
+  color: var(--ink);
+  font-size: 12.5px;
+}
+
+@media (max-width:900px) {
+
+  .hero,
+  .finding-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .method-section {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width:620px) {
+  .plate-visual {
+    min-height: 370px;
+    transform: scale(.84);
+  }
+
+  .finding-card {
+    padding: 22px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .plate-visual::before {
+    animation: none;
+  }
+}

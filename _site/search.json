@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "metode.html",
+    "href": "metode.html",
+    "title": "Metode dan sumber data",
+    "section": "",
+    "text": "Data utama (BPS). Delapan tabel statistik “Rata-rata Konsumsi Perkapita Seminggu Menurut Kelompok … Per Kabupaten/kota (Satuan Komoditas)”, tahun 2024, 514 kab/kota, 142 komoditas. Rincian judul, URL, dan tanggal akses ada di data/SUMBER_DATA.csv.\nData pendukung. Tabel BPS Jumlah Penduduk menurut Kabupaten/Kota dan Kelompok Umur 2024 untuk ukuran blok pada hierarki (scripts/03_prepare_penduduk.py; 26 kab/kota Papua yang tercatat ganda dihapus duplikatnya, 6 nama diselaraskan, total akhir sama dengan total nasional 281.603.799); batas wilayah kab/kota dari shapefile administrasi (periode 2019, 517 fitur; 3 badan air dibuang; 514 kab/kota dicocokkan dengan data BPS lewat nama dan tipe, 3 nama dikoreksi manual lewat data/geo/alias_nama.csv). Geometri disederhanakan (toleransi 0,008°) agar peta ringan.\nPra-pemrosesan (scripts/01_parse_konsumsi.py, scripts/02_prepare_geo.py):\n\nSel bertanda “-” di tabel BPS dianggap 0 dan ditandai di kolom strip (8,7% dari seluruh sel).\nKab/kota digabung dengan provinsi dan pulau berdasarkan urutan baris sumber (diverifikasi dengan nama kab/kota pertama tiap provinsi).\n12 komoditas dipilih untuk analisis multivariat; kriteria dan alasan ada di config.yaml.\nKarena satuan antarkomoditas berbeda, analisis memakai z-score.\n\nDeklarasi alat bantu AI. ISI (mis. kerangka kode dibuat dengan bantuan Claude; seluruh data, analisis, dan interpretasi diverifikasi penulis).\nKeterbatasan. Batas wilayah berperiode 2019, sedangkan data konsumsi 2024 (provinsi Papua versi 2022 diambil dari tabel BPS, bukan atribut shapefile); pulau-pulau kecil hilang akibat penyederhanaan geometri sehingga ada kab/kota kepulauan yang hampir tak terlihat di choropleth (simbol proporsional menutupi hal ini). Satuan komoditas tidak tercantum di berkas yang diunduh; nilai konsumsi tiap komoditas tidak dapat dijumlahkan. Tabel dipakai per komoditas, bukan sebagai asupan gizi."
+  },
+  {
+    "objectID": "peta.html",
+    "href": "peta.html",
+    "title": "Peta konsumsi per kab/kota",
+    "section": "",
+    "text": "Pilih komoditas pada menu di kiri atas peta. Gulir untuk zoom, seret untuk menggeser. Klik “Batas provinsi” di legenda untuk menampilkan atau menyembunyikan layer.\n\n\n                            \n                                            \n\n\nMengapa kuantil lima kelas? Sebaran konsumsi per komoditas miring ke kanan (banyak kab/kota bernilai kecil, sedikit bernilai sangat besar). Kuantil menjamin tiap kelas berisi jumlah kab/kota yang sama sehingga pola ruang tetap terbaca. Palet viridis dipilih karena urut secara persepsi dan aman untuk buta warna. Nilai yang dipetakan adalah rata-rata per kapita, bukan angka absolut.\n\n\n                            \n                                            \n\n\nSumber: BPS, Susenas Maret 2024; batas wilayah: ISI sumber GeoJSON."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\nSatu negeri,beragam isi piring.\n",
+    "section": "",
+    "text": "Susenas Maret 2024 · 514 kabupaten/kota\n\n\n\nApakah penduduk Indonesia makan dengan pola yang sama dari Sabang sampai Merauke, atau ada “tipe piring” yang berbeda menurut wilayah?\n\n\nLihat pola pangan →12 komoditas · 4 klaster\n\n\n\n\n\n514wilayah"
+  },
+  {
+    "objectID": "index.html#temuan-utama",
+    "href": "index.html#temuan-utama",
+    "title": "\nSatu negeri,beragam isi piring.\n",
+    "section": "Temuan utama",
+    "text": "Temuan utama\nISI (tulis dengan kata-katamu sendiri setelah memeriksa hasilnya; bahan awal ada di docs/catatan_temuan.md).\n\nSumber: BPS, Susenas Maret 2024. Rincian tabel dan pengolahan ada di Metode & sumber."
+  },
+  {
+    "objectID": "multivariat.html",
+    "href": "multivariat.html",
+    "title": "Pola pangan: 12 komoditas, 514 kab/kota",
+    "section": "",
+    "text": "Cara membaca. Setiap titik adalah satu kab/kota. Dua sumbu PCA meringkas 12 komoditas yang sudah distandarkan (z-score) karena satuannya berbeda-beda. Seret kotak pada plot PCA: garis yang berwarna di parallel coordinates hanya kab/kota terpilih, dan heatmap menunjukkan profil rata-rata tiap klaster.\nMuatan komponen (loading)\n\n\n\n\n\n\n\n\n\nPC1\nPC2\n\n\n\n\nPisang (lainnya)\n-0.275\n0.159\n\n\nKangkung\n-0.271\n0.159\n\n\nBeras\n-0.158\n-0.431\n\n\nIkan tongkol\n-0.130\n-0.374\n\n\nBayam\n-0.091\n0.496\n\n\nRokok kretek filter\n0.192\n-0.181\n\n\nSusu kental manis\n0.209\n0.435\n\n\nTepung terigu\n0.225\n0.223\n\n\nGorengan\n0.355\n-0.250\n\n\nMie bakso/rebus/goreng\n0.381\n-0.145\n\n\nDaging ayam ras\n0.418\n0.149\n\n\nTelur ayam ras\n0.473\n-0.021\n\n\n\n\n\n\n\nInterpretasi klaster dan pencilan: ISI.\nSumber: BPS, Susenas Maret 2024. Klaster: k-means (k = klaster_k di config.yaml) pada z-score."
+  },
+  {
+    "objectID": "hierarki.html",
+    "href": "hierarki.html",
+    "title": "Hierarki wilayah",
+    "section": "",
+    "text": "TipCara membaca\n\n\n\nKlik sebuah blok untuk masuk ke level berikutnya (jejak posisi ada di atas treemap); klik jejak untuk kembali. Ukuran blok = jumlah penduduk. Warna = z-score konsumsi komoditas yang dipilih di menu (biru = di bawah rata-rata kab/kota, kuning = di atas).\n\n\n\n\n                            \n                                            \n\n\n\n\n                            \n                                            \n\n\nSumber: BPS, Susenas Maret 2024 (konsumsi); BPS (jumlah penduduk 2024). Warna pada pulau/provinsi adalah rata-rata z-score tertimbang penduduk."
+  }
+]

@@ -1,0 +1,19 @@
+---
+title: "Peta konsumsi per kab/kota"
+---
+Pilih komoditas pada menu di kiri atas peta. Gulir untuk zoom, seret untuk menggeser. Klik "Batas provinsi" di legenda untuk menampilkan atau menyembunyikan layer.
+
+```{python}
+import sys; sys.path.insert(0, "src")
+import viz
+df = viz.muat()
+viz.peta_choropleth(df)
+```
+
+**Mengapa kuantil lima kelas?** Sebaran konsumsi per komoditas miring ke kanan (banyak kab/kota bernilai kecil, sedikit bernilai sangat besar). Kuantil menjamin tiap kelas berisi jumlah kab/kota yang sama sehingga pola ruang tetap terbaca. Palet viridis dipilih karena urut secara persepsi dan aman untuk buta warna. Nilai yang dipetakan adalah rata-rata per kapita, bukan angka absolut.
+
+```{python}
+viz.peta_simbol(df)
+```
+
+*Sumber: BPS, Susenas Maret 2024; batas wilayah: ISI sumber GeoJSON.*
